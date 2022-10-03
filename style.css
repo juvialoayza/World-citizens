@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap');
+
+body {
+    margin: 0;
+    background-color: lightgray;
+}
+
+#my-canvas {
+    background-color: lightgray;
+}
+
+/* #start-screen {
+    background-image: url("./images/start-screen.jpg");
+} */
+
+#start-btn,
+#restart-btn {
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 20px;
+    color: white;
+    background-color: rgb(27, 146, 179);
+    border-color: white;
+    border-radius: 5px;
+    font-family: 'Mochiy Pop One', sans-serif;
+
+}
+
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+#my-canvas,
+#gameover-screen {
+    display: none;
+}
