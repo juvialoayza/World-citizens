@@ -20,6 +20,9 @@ class Game {
         this.isGameOn = true;
 
         this.score = 0;
+
+        this.playerUp = false;
+        this.playerDown = false;
     }
 
     // MÉTODOS O ACCIONES DEL JUEGO
@@ -40,22 +43,19 @@ class Game {
     };
 
     playerCollisionRewards = () => {
-        this.reward.forEach((eachReward) => {
+        this.reward.forEach((eachReward, index) => {
+
             if (
                 this.playerObj.x < eachReward.x + eachReward.w &&
                 this.playerObj.x + this.playerObj.w > eachReward.x &&
                 this.playerObj.y < eachReward.y + eachReward.h &&
                 this.playerObj.h + this.playerObj.y > eachReward.y
-            )
-             {
-                
-                this.score++ 
-                this.reward.splice(eachReward)
-            } 
-            // if(this.reward.length !==0){
-            //     let nuevoReward = new Reward()
-            //     this.reward.shift(nuevoReward)
-            // }
+            ) {
+
+                this.score++
+                this.reward.splice(index, 1)
+            }
+
         });
     };
 
@@ -68,7 +68,7 @@ class Game {
         gameOverScreen.style.display = "flex"
     }
 
-    
+
     //agregar obstáculos 
 
     addObstacle = () => {
@@ -79,14 +79,15 @@ class Game {
             let nuevoObstacle = new Obstacle(randomXint);
             this.obstacle.push(nuevoObstacle);
         }
-    }
+    };
 
     addReward = () => {
-        if (this.frames % 110 === 0) {
-            let randomNum = Math.random() * 500;
-            let randomXint2 = Math.floor(randomNum);
+        let intervalY = 150;
+        if (this.frames % (intervalY - this.score) === 0) {
+            let randomNum = Math.random() * -150;
+            let randomYint = Math.floor(randomNum);
 
-            let nuevoReward = new Reward(randomXint2);
+            let nuevoReward = new Reward();
             this.reward.push(nuevoReward);
         }
     }
@@ -100,8 +101,8 @@ class Game {
     // dibujar puntuación
     drawScore = () => {
         ctx.font = "20px Mochiy Pop One, sans-serif";
-        let scoreStr = `Score: ${this.score}`
-        ctx.fillText(this.score, canvas.width * 0.4, 50)
+        let scoreStr = `Score:   ${this.score}`
+        ctx.fillText(scoreStr, canvas.width * 0.02, 30)
     }
 
 
@@ -114,7 +115,24 @@ class Game {
 
 
         //2. acciones y movimientos
-        // this.playerObj.gravityPlayer();
+        if (this.playerUp) {
+            if (this.playerObj.y > 417 - 70 - this.playerObj.jumpLength) {
+                this.playerObj.jumpPlayer();
+            } else {
+                this.playerUp = false;
+                this.playerDown = true;
+            }
+        }
+
+        if (this.playerDown) {
+            if (this.playerObj.y < 417 - 70) {
+                this.playerObj.gravityPlayer();
+            } else {
+                this.playerDown = false;
+            }
+        }
+
+
         this.obstacle.forEach((eachObstacle) => {
             eachObstacle.moveObstacle();
         });
@@ -143,5 +161,4 @@ class Game {
             requestAnimationFrame(this.gameLoop)
         }
     }
-
 }

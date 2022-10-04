@@ -3,7 +3,7 @@ class Obstacle {
         this.img = new Image();
         this.img.src = "./images/rock.png"
         this.x = canvas.width;
-        this.y = 350;
+        this.y = canvas.height - 50;
         this.w = 50;
         this.h = 50;
         this.speed = 2

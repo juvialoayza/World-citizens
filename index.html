@@ -11,21 +11,28 @@
 
 <body>
     <div class="container">
-
+        
         <!-- START SCREEN -->
         <div id="start-screen" class="container">
+            <h1 id="main-title">World Citizens</h1>
             <img src="./images/start-screen.png" width="700" alt="start-screen">
+            <h2>Instructions</h2>
             <button id="start-btn">START</button>
         </div>
+        <!-- </div> -->
 
-        <!-- GAME SCREEN -->
-        <canvas id="my-canvas" width="700" height="400"></canvas>
+        <div id="game-screen" class="container">
+            <!-- GAME SCREEN -->
+            <h1 id="main-title">World Citizens</h1>
+            <canvas id="my-canvas" width="700" height="417"></canvas>
+        </div>
 
         <!-- GAME OVER SCREEN -->
         <div id="gameover-screen" class="container">
             <img src="./images/game-over.jpg" width="700" alt="">
             <button id="restart-btn">PLAY AGAIN!</button>
         </div>
+
     </div>
 
     <script src="./javascript/main.js"></script>

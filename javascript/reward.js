@@ -2,11 +2,11 @@ class Reward {
     constructor () {
         this.img = new Image();
         this.img.src = "./images/llama.png"
-        this.x = 700;
-        this.y = 60;
+        this.x = Math.floor(Math.random(canvas.width - 50)*1000);
+        this.y = -50;
         this.w = 50;
         this.h = 50;
-        this.speed = 2
+        this.speed = 1
     }
 
         // MÉTODOS Y ACCIONES DE CADA OBSTÁCULO
@@ -15,6 +15,6 @@ class Reward {
         };
 
         moveReward = () => {
-            this.x = this.x - this.speed
+            this.y = this.y + this.speed
         }
 }

@@ -10,8 +10,8 @@ let gameObj;
 
 // STATE MANAGEMENT FUNCTIONS
 const startGame = () => {
-    startScreen.style.display = "none";
 
+    startScreen.style.display = "none";
     canvas.style.display = "block";
 
     gameObj = new Game();
@@ -35,15 +35,16 @@ restartBtn.addEventListener("click", restartGame);
 
 window.addEventListener("keydown", (event) => {
     if (event.code === "ArrowUp") {
-        gameObj.playerObj.jumpPlayer();
+
+        if(gameObj.playerUp === false && gameObj.playerDown === false) gameObj.playerUp = true;
     }
 
     if (event.code === "ArrowRight") {
         gameObj.playerObj.moveRightPlayer();
     }
 
-    if (event.code === "ArrowDown") {
-        gameObj.playerObj.moveDownPlayer();
+    if (event.code === "ArrowLeft") {
+        gameObj.playerObj.moveLeftPlayer();
     }
 
 })
