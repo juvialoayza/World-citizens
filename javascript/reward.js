@@ -2,8 +2,8 @@ class Reward {
     constructor () {
         this.img = new Image();
         this.img.src = "./images/llama.png"
-        this.x = 600;
-        this.y = 40;
+        this.x = 700;
+        this.y = 60;
         this.w = 50;
         this.h = 50;
         this.speed = 2

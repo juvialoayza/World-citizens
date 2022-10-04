@@ -2,7 +2,7 @@ class Obstacle {
     constructor () {
         this.img = new Image();
         this.img.src = "./images/rock.png"
-        this.x = Math.random()*canvas.width;
+        this.x = canvas.width;
         this.y = 350;
         this.w = 50;
         this.h = 50;

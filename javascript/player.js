@@ -23,11 +23,15 @@ class Player {
     // }
 
     jumpPlayer = () => {
-        this.y = this.y - this.jumpSpeed
+        this.y = this.y - (this.jumpSpeed * 2);
     }
 
-    movePlayer = () => {
+    moveRightPlayer = () => {
         this.x = this.x + (this.speed * 5);
+    }
+
+    moveDownPlayer = () => {
+        this.y = this.y + (this.speed * 5);
     }
 
 

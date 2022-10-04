@@ -5,7 +5,7 @@ class Game {
 
         //fondo del nivel
         this.stage = new Image();
-        this.stage.src = "./images/stage-peru-pix.png";
+        this.stage.src = "./images/stage-level1.jpg";
 
         // player
         this.playerObj = new Player();
@@ -49,6 +49,10 @@ class Game {
             ) {
                 this.gameScore()
             }
+            // if(this.reward.length !==0){
+            //     let nuevoReward = new Reward()
+            //     this.reward.shift(nuevoReward)
+            // }
         });
     };
 
@@ -67,14 +71,14 @@ class Game {
             this.score++
 
             this.reward.shift()
-            this.reward.shift()
+           
         }
     }
 
     //agregar obstáculos 
 
     addObstacle = () => {
-        if (this.frames % 120 === 0) {
+        if (this.frames % 160 === 0) {
             let randomNum = Math.random() * 500;
             let randomXint = Math.floor(randomNum);
 
@@ -84,7 +88,7 @@ class Game {
     }
 
     addReward = () => {
-        if (this.frames % 100 === 0) {
+        if (this.frames % 110 === 0) {
             let randomNum = Math.random() * 500;
             let randomXint2 = Math.floor(randomNum);
 
@@ -126,7 +130,7 @@ class Game {
         this.addObstacle();
         this.addReward();
         this.playerCollisionObstacles();
-        // this.playerCollisionRewards()
+        this.playerCollisionRewards()
         this.gameScore()
 
         //3. dibujado de los elementos

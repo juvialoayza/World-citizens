@@ -38,8 +38,12 @@ window.addEventListener("keydown", (event) => {
         gameObj.playerObj.jumpPlayer();
     }
 
-    if(event.code === "ArrowRight"){
-       gameObj.playerObj.movePlayer();
+    if (event.code === "ArrowRight") {
+        gameObj.playerObj.moveRightPlayer();
+    }
+
+    if (event.code === "ArrowDown") {
+        gameObj.playerObj.moveDownPlayer();
     }
 
 })
