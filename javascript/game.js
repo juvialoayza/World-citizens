@@ -46,9 +46,12 @@ class Game {
                 this.playerObj.x + this.playerObj.w > eachReward.x &&
                 this.playerObj.y < eachReward.y + eachReward.h &&
                 this.playerObj.h + this.playerObj.y > eachReward.y
-            ) {
-                this.gameScore()
-            }
+            )
+             {
+                
+                this.score++ 
+                this.reward.splice(eachReward)
+            } 
             // if(this.reward.length !==0){
             //     let nuevoReward = new Reward()
             //     this.reward.shift(nuevoReward)
@@ -65,16 +68,7 @@ class Game {
         gameOverScreen.style.display = "flex"
     }
 
-    // puntuación 
-    gameScore = () => {
-        if (this.reward.length !== 0 && this.reward[0].x < -50) {
-            this.score++
-
-            this.reward.shift()
-           
-        }
-    }
-
+    
     //agregar obstáculos 
 
     addObstacle = () => {
@@ -131,7 +125,6 @@ class Game {
         this.addReward();
         this.playerCollisionObstacles();
         this.playerCollisionRewards()
-        this.gameScore()
 
         //3. dibujado de los elementos
         this.drawStage();
