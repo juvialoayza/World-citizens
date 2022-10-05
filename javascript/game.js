@@ -16,6 +16,10 @@ class Game {
         // reward
         this.reward = [];
 
+        //vidas
+        this.heart = new Image();
+        this.heart.src = "./images/heart.png"
+
         this.frames = 0;
         this.isGameOn = true;
 
@@ -23,6 +27,8 @@ class Game {
 
         this.playerUp = false;
         this.playerDown = false;
+
+        this.lives = 3;
     }
 
     // MÉTODOS O ACCIONES DEL JUEGO
@@ -30,15 +36,20 @@ class Game {
 
     // colisión del jugador con los obstáculos
     playerCollisionObstacles = () => {
-        this.obstacle.forEach((eachObstacle) => {
+        this.obstacle.forEach((eachObstacle, index) => {
             if (
                 this.playerObj.x < eachObstacle.x + eachObstacle.w &&
                 this.playerObj.x + this.playerObj.w > eachObstacle.x &&
                 this.playerObj.y < eachObstacle.y + eachObstacle.h &&
                 this.playerObj.h + this.playerObj.y > eachObstacle.y
-            ) {
-                
-                this.gameOver()
+            ) 
+            { 
+                this.lives--;
+                this.obstacle.splice(index, 1)
+                console.log(this.lives)
+                if(this.lives <= 0){
+                    this.gameOver();
+                }
             }
         });
     };
@@ -60,6 +71,8 @@ class Game {
         });
     };
 
+
+   
     // puntuación
     gameScore = () => {
         this.score++
@@ -110,6 +123,13 @@ class Game {
         ctx.fillText(scoreStr, canvas.width * 0.02, 30)
     }
 
+    // dibujar vidas
+    drawLives = () => {
+        ctx.font = "20px Mochiy Pop One, sans-serif";
+       let livesStr = `❤:  ${+this.lives}`;
+        ctx.fillText(livesStr, canvas.width-60, 30);
+    }
+
 
     // RECURSIÓN
     gameLoop = () => {
@@ -121,7 +141,7 @@ class Game {
 
         //2. acciones y movimientos
         if (this.playerUp) {
-            if (this.playerObj.y > 417 - 70 - this.playerObj.jumpLength) {
+            if (this.playerObj.y > 417 - 95 - this.playerObj.jumpLength) {
                 this.playerObj.jumpPlayer();
             } else {
                 this.playerUp = false;
@@ -130,7 +150,7 @@ class Game {
         }
 
         if (this.playerDown) {
-            if (this.playerObj.y < 417 - 70) {
+            if (this.playerObj.y < 417 - 95) {
                 this.playerObj.gravityPlayer();
             } else {
                 this.playerDown = false;
@@ -159,6 +179,7 @@ class Game {
             eachReward.drawReward();
         });
         this.drawScore()
+        this.drawLives()
 
 
         //4. control de la recursion

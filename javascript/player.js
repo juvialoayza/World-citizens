@@ -5,9 +5,9 @@ class Player {
         this.img = new Image()
         this.img.src = "./images/player.png"
         this.x = 10;
-        this.y = 417-70;
-        this.w = 70;
-        this.h = 70;
+        this.y = 417-95;
+        this.w = 95;
+        this.h = 95;
         this.speed = 3
         this.jumpLength = 150
     }
