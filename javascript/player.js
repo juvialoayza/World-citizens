@@ -9,7 +9,7 @@ class Player {
         this.w = 70;
         this.h = 70;
         this.speed = 3
-        this.jumpLenght = 150
+        this.jumpLength = 150
     }
 
     // MÉTODOS O ACCIONES DEL JUGADOR
@@ -27,11 +27,11 @@ class Player {
     }
 
     moveRightPlayer = () => {
-        this.x = this.x + (this.speed * 5);
+        this.x = this.x + (this.speed * 10);
     }
 
     moveLeftPlayer = () => {
-        this.x = this.x - (this.speed * 5);
+        this.x = this.x - (this.speed * 10);
     }
 
 

@@ -37,6 +37,7 @@ class Game {
                 this.playerObj.y < eachObstacle.y + eachObstacle.h &&
                 this.playerObj.h + this.playerObj.y > eachObstacle.y
             ) {
+                
                 this.gameOver()
             }
         });
@@ -59,13 +60,17 @@ class Game {
         });
     };
 
-
+    // puntuación
+    gameScore = () => {
+        this.score++
+    }
     // termina el juego
     gameOver = () => {
         this.isGameOn = false;
         canvas.style.display = "none";
 
         gameOverScreen.style.display = "flex"
+        
     }
 
 

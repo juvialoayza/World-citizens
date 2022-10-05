@@ -16,5 +16,9 @@ class Obstacle {
 
         moveObstacle = () => {
             this.x = this.x - this.speed
+
+            // if(gameObj.gameScore = 1){
+            //     this.x = this.x - (this.speed*3)
+            // }
         }
 }

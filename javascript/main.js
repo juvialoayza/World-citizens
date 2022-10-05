@@ -4,6 +4,7 @@ const ctx = canvas.getContext("2d");
 const startScreen = document.querySelector("#start-screen");
 const startBtn = document.querySelector("#start-btn");
 const gameOverScreen = document.querySelector("#gameover-screen");
+const score = document.querySelector("#totalscore").value;
 const restartBtn = document.querySelector("#restart-btn");
 
 let gameObj;
@@ -24,8 +25,8 @@ const restartGame = () => {
 
     canvas.style.display = "block"
 
+    // score.value = gameObj.drawScore();
     gameObj = new Game();
-
     gameObj.gameLoop();
 };
 
