@@ -46,11 +46,22 @@ body {
     margin: 10px;
 }
 
+#score{
+    position: absolute;
+    width: 130px;
+    height: 20px;
+    margin-top: 500px;
+    left: 25px;
+    text-align: center; 
+}
+
 #my-canvas,
-#gameover-screen {
+#gameover-screen{
     display: none;
 }
 
-.hide-element {
+
+
+/* .hide-element {
     display:none;
-}
+} */

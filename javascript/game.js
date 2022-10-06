@@ -10,8 +10,9 @@ class Game {
         // player
         this.playerObj = new Player();
 
-        // obstáculo
+        // obstáculos
         this.obstacle = [];
+        this.obstacle1 = [];
 
         // reward
         this.reward = [];
@@ -64,7 +65,8 @@ class Game {
                 this.playerObj.h + this.playerObj.y > eachReward.y
             ) {
 
-                this.score++
+                this.score++ 
+                score.innerText = this.score
                 this.reward.splice(index, 1)
             }
 
@@ -97,7 +99,30 @@ class Game {
             let nuevoObstacle = new Obstacle(randomXint);
             this.obstacle.push(nuevoObstacle);
         }
+
+        if (this.score>= 1 && this.score<=2){
+        if (this.frames % 140 === 0) {
+            let randomNum = Math.random() * 500;
+            let randomXint = Math.floor(randomNum);
+
+            let nuevoObstacle = new Obstacle(randomXint);
+            this.obstacle.push(nuevoObstacle);
+        }
+    }
     };
+
+    addObstacle1 = () => {
+        if (this.score>= 1){
+            if (this.frames % 140 === 0) {
+                let randomNum = Math.random() * 500;
+                let randomXint = Math.floor(randomNum);
+    
+                let nuevoObstacle1 = new Obstacle1(randomXint);
+                this.obstacle1.push(nuevoObstacle1);
+
+    }
+}
+    }
 
     addReward = () => {
         let intervalY = 150;
@@ -161,10 +186,14 @@ class Game {
         this.obstacle.forEach((eachObstacle) => {
             eachObstacle.moveObstacle();
         });
+        this.obstacle1.forEach((eachObstacle1) => {
+            eachObstacle1.moveObstacle1();
+        });
         this.reward.forEach((eachReward) => {
             eachReward.moveReward();
         })
         this.addObstacle();
+        this.addObstacle1();
         this.addReward();
         this.playerCollisionObstacles();
         this.playerCollisionRewards()
@@ -175,6 +204,10 @@ class Game {
         this.obstacle.forEach((eachObstacle) => {
             eachObstacle.drawObstacle();
         });
+        this.obstacle1.forEach((eachObstacle1) => {
+            eachObstacle1.drawObstacle1();
+        });
+
         this.reward.forEach((eachReward) => {
             eachReward.drawReward();
         });
