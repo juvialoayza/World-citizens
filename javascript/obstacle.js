@@ -1,5 +1,5 @@
 class Obstacle {
-    constructor () {
+    constructor() {
         this.img = new Image();
         this.img.src = "./images/rock.png"
         this.x = canvas.width;
@@ -9,16 +9,12 @@ class Obstacle {
         this.speed = 2
     }
 
-        // MÉTODOS Y ACCIONES DE CADA OBSTÁCULO
-        drawObstacle = () => {
+    // MÉTODOS Y ACCIONES DE CADA OBSTÁCULO
+    drawObstacle = () => {
         ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
-        };
+    };
 
-        moveObstacle = () => {
-            this.x = this.x - this.speed
-
-            // if(gameObj.gameScore = 1){
-            //     this.x = this.x - (this.speed*3)
-            // }
-        }
+    moveObstacle = () => {
+        this.x = this.x - this.speed;
+    };
 }

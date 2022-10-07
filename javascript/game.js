@@ -1,35 +1,31 @@
 class Game {
     constructor() {
-
         //PROPIEDADES O ELEMENTOS DEL JUEGO
 
         //fondo del nivel
         this.stage = new Image();
         this.stage.src = "./images/stage-level1.jpg";
 
-        // player
+        // jugador
         this.playerObj = new Player();
+        this.playerUp = false;
+        this.playerDown = false;
 
         // obstáculos
         this.obstacle = [];
         this.obstacle1 = [];
+        this.loadObstacles = true;
 
-        // reward
+        // premios
         this.reward = [];
 
         //vidas
-        this.heart = new Image();
-        this.heart.src = "./images/heart.png"
+        this.lives = 3;
 
         this.frames = 0;
         this.isGameOn = true;
 
         this.score = 0;
-
-        this.playerUp = false;
-        this.playerDown = false;
-
-        this.lives = 3;
     }
 
     // MÉTODOS O ACCIONES DEL JUEGO
@@ -39,16 +35,33 @@ class Game {
     playerCollisionObstacles = () => {
         this.obstacle.forEach((eachObstacle, index) => {
             if (
-                this.playerObj.x < eachObstacle.x + eachObstacle.w &&
+                this.playerObj.x < eachObstacle.x &&
                 this.playerObj.x + this.playerObj.w > eachObstacle.x &&
                 this.playerObj.y < eachObstacle.y + eachObstacle.h &&
                 this.playerObj.h + this.playerObj.y > eachObstacle.y
-            ) 
-            { 
+            ) {
                 this.lives--;
                 this.obstacle.splice(index, 1)
-                console.log(this.lives)
-                if(this.lives <= 0){
+               
+                if (this.lives <= 0) {
+                    this.gameOver();
+                }
+            }
+        });
+    };
+
+    playerCollisionObstacles1 = () => {
+        this.obstacle1.forEach((eachObstacle1, index) => {
+            if (
+                this.playerObj.x < eachObstacle1.x + eachObstacle1.w &&
+                this.playerObj.x + this.playerObj.w > eachObstacle1.x &&
+                this.playerObj.y < eachObstacle1.y + eachObstacle1.h &&
+                this.playerObj.h + this.playerObj.y > eachObstacle1.y
+            ) {
+                this.lives--;
+                this.obstacle1.splice(index, 1);
+                
+                if (this.lives <= 0) {
                     this.gameOver();
                 }
             }
@@ -64,30 +77,28 @@ class Game {
                 this.playerObj.y < eachReward.y + eachReward.h &&
                 this.playerObj.h + this.playerObj.y > eachReward.y
             ) {
-
-                this.score++ 
-                score.innerText = this.score
-                this.reward.splice(index, 1)
+                document.querySelector("#sound-rewards").play()
+                this.score++;
+                score.innerText = this.score;
+                this.reward.splice(index, 1);
             }
 
         });
     };
 
-
-   
     // puntuación
     gameScore = () => {
         this.score++
-    }
+    };
+
     // termina el juego
     gameOver = () => {
+        document.querySelector("#sound-game-over").play();
         this.isGameOn = false;
         canvas.style.display = "none";
 
         gameOverScreen.style.display = "flex"
-        
-    }
-
+    };
 
     //agregar obstáculos 
 
@@ -98,31 +109,18 @@ class Game {
 
             let nuevoObstacle = new Obstacle(randomXint);
             this.obstacle.push(nuevoObstacle);
-        }
-
-        if (this.score>= 1 && this.score<=2){
-        if (this.frames % 140 === 0) {
-            let randomNum = Math.random() * 500;
-            let randomXint = Math.floor(randomNum);
-
-            let nuevoObstacle = new Obstacle(randomXint);
-            this.obstacle.push(nuevoObstacle);
-        }
-    }
+        }    
     };
 
     addObstacle1 = () => {
-        if (this.score>= 1){
-            if (this.frames % 140 === 0) {
+            if (this.frames % 100 === 0) {
                 let randomNum = Math.random() * 500;
                 let randomXint = Math.floor(randomNum);
-    
+
                 let nuevoObstacle1 = new Obstacle1(randomXint);
                 this.obstacle1.push(nuevoObstacle1);
-
-    }
-}
-    }
+            }
+    };
 
     addReward = () => {
         let intervalY = 150;
@@ -133,10 +131,10 @@ class Game {
             let nuevoReward = new Reward();
             this.reward.push(nuevoReward);
         }
-    }
+    };
 
 
-    // agregar fondo
+    // dibujar fondo
     drawStage = () => {
         ctx.drawImage(this.stage, 0, 0, canvas.width, canvas.height);
     }
@@ -150,11 +148,18 @@ class Game {
 
     // dibujar vidas
     drawLives = () => {
-        ctx.font = "20px Mochiy Pop One, sans-serif";
-       let livesStr = `❤:  ${+this.lives}`;
-        ctx.fillText(livesStr, canvas.width-60, 30);
-    }
+        let livesStr;
+        if (this.lives === 3){
+            livesStr = "❤❤❤";
+        } else if (this.lives === 2) {
+            livesStr = "    ❤❤";
+        } else {
+            livesStr = "        ❤";
+        }
 
+        ctx.font = "20px Mochiy Pop One, sans-serif";
+        ctx.fillText(livesStr, canvas.width - 70, 30);
+    };
 
     // RECURSIÓN
     gameLoop = () => {
@@ -182,7 +187,6 @@ class Game {
             }
         }
 
-
         this.obstacle.forEach((eachObstacle) => {
             eachObstacle.moveObstacle();
         });
@@ -191,12 +195,21 @@ class Game {
         });
         this.reward.forEach((eachReward) => {
             eachReward.moveReward();
-        })
-        this.addObstacle();
-        this.addObstacle1();
+        });
+
+        if(this.score !==0 && this.score % 3 === 0) this.loadObstacles = false;
+        else this.loadObstacles = true;
+
+        if (this.loadObstacles) {
+            this.addObstacle();
+        } else {
+            this.addObstacle1();
+        }
+
         this.addReward();
         this.playerCollisionObstacles();
-        this.playerCollisionRewards()
+        this.playerCollisionObstacles1();
+        this.playerCollisionRewards();
 
         //3. dibujado de los elementos
         this.drawStage();
@@ -204,6 +217,7 @@ class Game {
         this.obstacle.forEach((eachObstacle) => {
             eachObstacle.drawObstacle();
         });
+
         this.obstacle1.forEach((eachObstacle1) => {
             eachObstacle1.drawObstacle1();
         });
@@ -211,13 +225,12 @@ class Game {
         this.reward.forEach((eachReward) => {
             eachReward.drawReward();
         });
-        this.drawScore()
-        this.drawLives()
-
+        this.drawScore();
+        this.drawLives();
 
         //4. control de la recursion
         if (this.isGameOn === true) {
             requestAnimationFrame(this.gameLoop)
         }
-    }
+    };
 }

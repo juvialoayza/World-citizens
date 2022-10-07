@@ -11,16 +11,17 @@ let gameObj;
 
 // STATE MANAGEMENT FUNCTIONS
 const startGame = () => {
+    document.querySelector("#sound-start").play();
 
     startScreen.style.display = "none";
     canvas.style.display = "block";
 
     gameObj = new Game();
     gameObj.gameLoop();
-
 };
 
 const restartGame = () => {
+    document.querySelector("#sound-start").play();
     gameOverScreen.style.display = "none"
 
     canvas.style.display = "block"
@@ -36,8 +37,7 @@ restartBtn.addEventListener("click", restartGame);
 
 window.addEventListener("keydown", (event) => {
     if (event.code === "ArrowUp") {
-
-        if(gameObj.playerUp === false && gameObj.playerDown === false) gameObj.playerUp = true;
+        if (gameObj.playerUp === false && gameObj.playerDown === false) gameObj.playerUp = true;
     }
 
     if (event.code === "ArrowRight") {
@@ -47,5 +47,4 @@ window.addEventListener("keydown", (event) => {
     if (event.code === "ArrowLeft") {
         gameObj.playerObj.moveLeftPlayer();
     }
-
-})
+});

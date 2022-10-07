@@ -11,33 +11,47 @@
 
 <body>
     <div class="container">
-        
+
         <!-- START SCREEN -->
+        <h1 id="main-title">World Citizens</h1>
         <div id="start-screen" class="container">
-            <h1 id="main-title">World Citizens</h1>
             <img src="./images/start-screen.png" width="700" alt="start-screen">
-            <h2>Instructions</h2>
+            <h2>Travel around the world</h2>
+            <!-- <h3>Instructions</h3> -->
+            <div class="cont-information-arrow">
+                <div class="right-information">
+                    <img src="./images/arrow-right.png" alt="arrow-right">
+                    <p>Move right</p>
+                </div>
+                <div class="up-information">
+                    <img src="./images/arrow-up.png" alt="arrow-up">
+                    <p>Jump</p>
+                </div>
+            </div>
+
             <button id="start-btn">START</button>
         </div>
         <!-- </div> -->
 
         <div id="game-screen" class="container">
             <!-- GAME SCREEN -->
-            <h1 id="main-title">World Citizens</h1>
             <canvas id="my-canvas" width="700" height="417"></canvas>
         </div>
 
         <!-- GAME OVER SCREEN -->
         <div id="gameover-screen" class="container">
-            <img src="./images/game-over.jpg" width="700" alt="">   
+            <img src="./images/game-over.jpg" width="700" height="417"/>
             <div class="score">
                 <h1>Score: <span id="totalscore">0</span></h1>
-            </div>        
+            </div>
             <button id="restart-btn">PLAY AGAIN!</button>
         </div>
-
     </div>
 
+    <audio id="sound-start" src="./mp3/start.mp3"></audio>
+    <audio id="sound-rewards" src="./mp3/rewards.mp3"></audio>
+    <audio id="sound-game-over" src="./mp3/game-over.mp3"></audio>
+    
     <script src="./javascript/main.js"></script>
     <script src="./javascript/game.js"></script>
     <script src="./javascript/player.js"></script>

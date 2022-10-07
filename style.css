@@ -2,66 +2,68 @@
 
 body {
     margin: 0;
-    background-color: lightgray;
+    background-color: #EFF7FA;
     font-family: 'Mochiy Pop One', sans-serif;
+    color: #0272A8;
 }
 
-#start-screen, #game-screen{
+#start-screen,
+#game-screen {
     background-color: #EFF7FA;
     text-align: center;
     color: #0272A8;
     padding: 0 10px 10px 10px;
 }
 
-
-
 #my-canvas {
     background-color: lightgray;
 }
 
-/* #start-screen {
-    background-image: url("./images/start-screen.png");
-} */
-
 #start-btn,
 #restart-btn {
-    padding: 5px 10px;
+    padding: 10px 10px 10px 10px;
     font-size: 20px;
     color: white;
-    background-color:#1792C8;
+    background-color: #1792C8;
     border-color: white;
     border-radius: 5px;
     font-family: 'Mochiy Pop One', sans-serif;
- }
-
-
+}
 
 .container {
     background-color: #EFF7FA;
-    /* color:#0272A8; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 10px;
 }
 
-#score{
+#gameover-screen{
+    margin-top: -10px;
+}
+
+#score {
     position: absolute;
     width: 130px;
     height: 20px;
     margin-top: 500px;
     left: 25px;
-    text-align: center; 
+    text-align: center;
 }
 
 #my-canvas,
-#gameover-screen{
+#gameover-screen {
     display: none;
 }
 
+.cont-information-arrow{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}
 
-
-/* .hide-element {
-    display:none;
-} */
+.right-information{
+    margin-right: 20px;
+}

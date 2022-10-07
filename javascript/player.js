@@ -5,11 +5,11 @@ class Player {
         this.img = new Image()
         this.img.src = "./images/player.png"
         this.x = 10;
-        this.y = 417-95;
-        this.w = 95;
+        this.y = 417 - 95;
+        this.w = 90;
         this.h = 95;
-        this.speed = 3
-        this.jumpLength = 150
+        this.speed = 3;
+        this.jumpLength = 180
     }
 
     // MÉTODOS O ACCIONES DEL JUGADOR
@@ -19,23 +19,22 @@ class Player {
     }
 
     gravityPlayer = () => {
-        this.y = this.y + this.speed
-    } 
+        this.y = this.y + this.speed;
+    }
 
     jumpPlayer = () => {
-        this.y = this.y - this.speed
+        this.y = this.y - this.speed;
     }
 
     moveRightPlayer = () => {
-        this.x = this.x + (this.speed * 10);
+        if (this.x + this.w <= 678) {
+            this.x = this.x + this.speed * 10;
+        }
     }
 
     moveLeftPlayer = () => {
-        this.x = this.x - (this.speed * 10);
+        if (this.x > 10) {
+            this.x = this.x - this.speed * 10;
+        }
     }
-
-
-
-
-
 }
