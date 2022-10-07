@@ -1,12 +1,12 @@
 World Citizens
 Description
-The objective of the game is to simply move right and reach the end of each stage. the game has two types of challenges, one is to get rewards and the other one is to avoid the obstacles littered throughout in each stage; when the player finds an obstacle, they must to jump.  The game ends when the player collides with an obstacle.
+The objective of the game is to simply move right and reach the end of each stage. The game has two types of challenges, one is to get rewards and the other one is to avoid the obstacles littered throughout in each stage; when the player finds an obstacle, they must to jump.  The game ends when the player collides with an obstacle.
 
 MVP (DOM - CANVAS)
-game has one character that moves horizontally 
-obstacles appear from the bottom of the screen 
+Game has one character that moves horizontally 
+obstacles appear from the sides of the screen 
 rewards appear from the top 
-player collides with an obstacle will end the game
+player collides with an obstacle three times, will end the game
 
 Backlog
 add scoreboard
@@ -71,3 +71,10 @@ reward - move
 game - checkCollision
 game - GameOver
 game - addEventListener
+
+Git
+[Project repo](https://github.com/juvialoayza/World-citizens)
+[Deploy](https://juvialoayza.github.io/World-citizens/)
+
+Slides
+[Project presentation](https://bit.ly/world-citizens-game) 
